@@ -58,6 +58,7 @@ namespace GetFilePath
                 return false;
             }
         }
+        //ファイル名からパスに変換する
         public List<string> getPaths(string[] file_names)
         {
             
@@ -78,7 +79,7 @@ namespace GetFilePath
                 {
                     r = file_name;
                 }
-
+                r = System.String.Format("<{0}>", r);
                 return r;
             });
 

@@ -28,21 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.filepathtext = new System.Windows.Forms.Label();
             this.file_paths = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // filepathtext
-            // 
-            this.filepathtext.AllowDrop = true;
-            this.filepathtext.AutoSize = true;
-            this.filepathtext.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.filepathtext.Location = new System.Drawing.Point(12, 192);
-            this.filepathtext.Name = "filepathtext";
-            this.filepathtext.Size = new System.Drawing.Size(216, 21);
-            this.filepathtext.TabIndex = 0;
-            this.filepathtext.Text = "ここにパスが表示されます";
             // 
             // file_paths
             // 
@@ -73,9 +61,9 @@
             this.ClientSize = new System.Drawing.Size(602, 222);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.file_paths);
-            this.Controls.Add(this.filepathtext);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "ファイルパス取得";
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.filepathtext_DragDrop);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -83,8 +71,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label filepathtext;
         private System.Windows.Forms.TextBox file_paths;
         private System.Windows.Forms.Button button1;
     }

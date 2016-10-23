@@ -26,13 +26,22 @@ namespace GetFilePath
             string[] file_names =(string[])e.Data.GetData(DataFormats.FileDrop, false);
             List<string> file_paths = path_getter.getPaths(file_names);
             this.file_paths.Text = string.Join("\r\n", file_paths);
-
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(file_paths.Text);
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            string[] file_names = Environment.GetCommandLineArgs().Skip(1).ToArray();
+            if (file_names.Length > 0)
+            {
+                List<string> file_paths = path_getter.getPaths(file_names);
+                Clipboard.SetText(string.Join("\r\n", file_paths));
+                this.Close();
+            }
         }
     }
 }
