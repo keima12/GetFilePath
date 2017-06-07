@@ -68,10 +68,10 @@ namespace GetFilePath
 
                 if(checkUncPaht(file_name))
                 {
-                    return file_name;
+                    return System.String.Format("<{0}>",  file_name);
                 }
 
-                if (checkNetWorkDrive(driveletter)) //
+                if (checkNetWorkDrive(driveletter)) 
                 {
                     r = getUncPath(driveletter) + file_name.Substring(2);
                 }
