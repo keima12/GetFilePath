@@ -8,15 +8,32 @@ using System.Management;
 
 namespace GetFilePath
 {
+    /// <summary>
+    /// ファイルパスの変換処理
+    /// </summary>
     public class GetFilePathLib
     {
+        /// <summary>
+        /// <value>dataは変換結果を保存する。 </value>
+        /// </summary>
         private List<string> data;
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public GetFilePathLib()
         {
             data = new List<string>();
         }
-        // 引数で指定したドライブレターがネットワークドライブであるか
-        // 判定する
+
+        /// <summary>
+        /// 引数で指定したドライブレターがネットワークドライブであるか判定する
+        /// <param name="driveletter">ドライブレター</param>
+        /// <returns>
+        /// trueはネットワークドライブ
+        /// falseはシステムドライブ
+        /// </returns>
+        /// </summary>
         private bool checkNetWorkDrive(string driveletter)
         {
             System.IO.DriveInfo drive = new System.IO.DriveInfo(driveletter);
@@ -26,7 +43,12 @@ namespace GetFilePath
             else
                 return false;
         }
-        // 引数で指定したドライブレターをuncパスに変換する
+   
+        /// <summary>
+        /// 引数で指定したドライブレターをuncパスに変換する 
+        /// </summary>
+        /// <param name="drive_letter">ドライブレター</param>
+        /// <returns>uncパス</returns>
         private string getUncPath(string drive_letter)
         { 
 
@@ -47,7 +69,15 @@ namespace GetFilePath
             return sMsgStr;
           
         }
-        private bool checkUncPaht(string file_path)
+        /// <summary>
+        /// ファイルパスがuncパスか、ドライブレター付きのパスか判定する
+        /// </summary>
+        /// <param name="file_path"></param>
+        /// <returns>
+        /// trueはuncパス
+        /// falseはドライブレター付きパス
+        /// </returns>
+        private bool checkUncPath(string file_path)
         {
             if(System.Text.RegularExpressions.Regex.IsMatch(file_path, @"^\\\\"))
             {
@@ -59,6 +89,13 @@ namespace GetFilePath
             }
         }
         //ファイル名からパスに変換する
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="file_names"></param>
+        /// <returns>
+        /// ファイルパス今まで入力されたファイルパス
+        /// </returns>
         public List<string> getPaths(string[] file_names)
         {
             
@@ -66,7 +103,7 @@ namespace GetFilePath
                 string r;
                 string driveletter = file_name[0].ToString();
 
-                if(checkUncPaht(file_name))
+                if(checkUncPath(file_name))
                 {
                     return System.String.Format("<{0}>",  file_name);
                 }
