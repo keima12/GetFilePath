@@ -35,13 +35,7 @@ namespace GetFilePath
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            string[] file_names = Environment.GetCommandLineArgs().Skip(1).ToArray();
-            if (file_names.Length > 0)
-            {
-                List<string> file_paths = path_getter.getPaths(file_names);
-                Clipboard.SetText(string.Join("\r\n", file_paths));
-                this.Close();
-            }
+
         }
     }
 }

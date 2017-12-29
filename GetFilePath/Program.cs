@@ -14,9 +14,18 @@ namespace GetFilePath
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            string[] file_names = Environment.GetCommandLineArgs().Skip(1).ToArray();
+            if (file_names.Length > 0)
+            {
+                GetFilePathLib path_getter = new GetFilePathLib();
+                List<string> file_paths = path_getter.getPaths(file_names);
+                Clipboard.SetText(string.Join("\r\n", file_paths));
+            }else
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Form1());
+            }
         }
     }
 }
